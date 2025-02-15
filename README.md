@@ -7,7 +7,7 @@
 
 
 ## Tools
-
+- VMware Workstation Pro 17
 
 ## Steps
 
