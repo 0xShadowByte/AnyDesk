@@ -14,21 +14,23 @@ The objective of this project was to set up a Windows virtual machine (VM) in VM
 
 ## Tools
 - VMware Workstation Pro 17
+- Windows 10 Enterprise
 
-## Steps
+### Step 1: Create a Windows Virtual Machine in VMware
 
-Step 1: Create a Windows Virtual Machine in VMware
-Open VMware Workstation Pro (or VMware Player).
-Click "Create a New Virtual Machine".
-Select "Typical (Recommended)" and click Next.
-Choose "Install from ISO" and select your Windows ISO file (Windows 10/11 or Windows Server).
-Click Next and select Windows version (e.g., Windows 10 Pro).
-Set VM Name & Location (e.g., Windows-RDP-VM).
-Allocate CPU & RAM (recommend 2 vCPUs, 4GB+ RAM).
-Set Disk Size (recommend 50GB+, choose "Store as a single file").
-Click Finish, then Power On the VM to install Windows.
+*Ref 1: Installing VMware Workstation Pro*
 
-Step 2: Enable Remote Desktop (RDP) in Windows
+![image](https://github.com/user-attachments/assets/8d50b58d-bd21-45a1-9cdf-dc19591fa629)
+
+*Ref 2: Installing Windows Server 2022 on VM*
+
+![image](https://github.com/user-attachments/assets/7988407d-4020-4a82-bf5d-3a92a8e6560f)
+
+*Ref 3: Running Windows Server 2022 on VM*
+
+![image](https://github.com/user-attachments/assets/56abd418-f4c4-4b79-b3be-5a8752899f02)
+
+### Step 2: Enable Remote Desktop (RDP) in Windows
 Log into the Windows VM.
 Open Run (Win + R), type sysdm.cpl, and press Enter.
 Go to "Remote" tab and select "Allow remote connections to this computer".
@@ -36,7 +38,7 @@ Check "Allow connections only from computers running Remote Desktop with Network
 Click "Select Users" → Add your Windows user account.
 Click Apply > OK.
 
-Step 3: Configure Firewall to Allow RDP
+### Step 3: Configure Firewall to Allow RDP
 Open Windows Defender Firewall (Win + R, type firewall.cpl, press Enter).
 Click "Allow an app or feature through Windows Defender Firewall".
 Scroll down, find "Remote Desktop", and check both Private & Public boxes.
@@ -45,19 +47,19 @@ OR, enable RDP via PowerShell:
 powershell
 Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
 
-Step 4: Find Your VM's IP Address
+### Step 4: Find Your VM's IP Address
 Open Command Prompt (Win + R, type cmd, press Enter).
 Type:
 ipconfig
 Look for IPv4 Address (e.g., 192.168.1.100).
 
-Step 5: Connect to the Windows VM via RDP
+### Step 5: Connect to the Windows VM via RDP
 On your host machine, open Remote Desktop Connection (Win + R, type mstsc, press Enter).
 Enter the VM’s IP address (192.168.1.100).
 Click Connect and enter your Windows VM username & password.
 Click OK, and you should be connected! 🎉
 
-🔐 Bonus: Secure Your RDP Setup
+### 🔐 Bonus: Secure Your RDP Setup
 ✅ Change RDP Port (Default 3389 → Custom Port):
 
 powershell
