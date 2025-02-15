@@ -2,9 +2,15 @@
 
 ## Objective
 
+The objective of this project was to set up a Windows virtual machine (VM) in VMware Workstation Pro and enable Remote Desktop Protocol (RDP) for remote access. This involved configuring system settings, adjusting firewall rules, and ensuring a successful connection between the host machine and the VM. Additionally, the project focused on understanding networking fundamentals, troubleshooting potential RDP connection issues, and implementing basic security measures to protect the remote session. By completing this project, learners gained hands-on experience in virtualization, Windows administration, and remote access security.
 
 ## Skills Learned
 
+- Virtualization & System Administration – Set up and configured a Windows VM in VMware.
+- Networking & Remote Access – Established an RDP session, identified IP addresses, and understood RDP over TCP/IP.
+- Windows Security & Firewall Management – Configured firewall rules, enabled Network Level Authentication (NLA), and managed settings via PowerShell.
+- Troubleshooting & Problem-Solving – Diagnosed RDP connection issues, tested network connectivity, and analyzed Windows Event Viewer logs.
+- RDP Security Hardening – Secured RDP by changing ports, restricting user access, and exploring MFA options.
 
 ## Tools
 - VMware Workstation Pro 17
