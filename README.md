@@ -47,3 +47,22 @@ To clarify on the first portion of the excerise, restrict Inbound RDP access to 
 
 Open Remote Desktop Connection (mstsc.exe) and enter the VM's Public IP Address. Log in using the Admin credentials set eariler. Once connected, open Event Viewer and navigate to Windows Logs > Security > Event ID 4624 (Successful Logins). Event ID 4625 (Failed Logins).
 
+![image](https://github.com/user-attachments/assets/b4e129f4-b5f6-45c5-b785-3a19aa722931)
+
+### Step 4: Intergrate the VM with Azure Sentinel for RDP Monitoring
+
+Enable Azure Sentinel by going to Microsoft Sentinel and create a Sentinel workspace. Connect Log Analytics to the VM by attaching the VM to a log analytics workspace and enable windows security event logs collection. Create an alert rule for RDP access attempts by going to analytics > create rule, set condition: EventID 4625 (Failed RDP login) and configure an email alert for multiple failed login attempts.
+
+### Step 5: Simulate an RDP Security Incident
+
+Attempt muple failed logins (use wrong credentials). Check Windows Event Viewer for failed login attempts. Open Azure Sentinel to review logs in Log Analytics. Identify the failed login events and generate an incident report.
+
+### Step 6: Document Findings and Remediation Steps
+Summarize who attempted access, from where, and when. Identify if it was a brute force attempt or a misconfigured account.
+Suggest mitigation strategies (e.g., enable MFA, restrict RDP to VPN users only)
+
+
+
+
+
+
