@@ -1,82 +1,30 @@
-# Setting RDP on Kali Linux
+# Home Lab Simulation: Secure RDP Access & Incident Investigation Using Azure Sentinel
 
 ## Objective
 
-The objective of this project was to set up a Windows virtual machine (VM) in VMware Workstation Pro and enable Remote Desktop Protocol (RDP) for remote access. This involved configuring system settings, adjusting firewall rules, and ensuring a successful connection between the host machine and the VM. Additionally, the project focused on understanding networking fundamentals, troubleshooting potential RDP connection issues, and implementing basic security measures to protect the remote session. By completing this project, learners gained hands-on experience in virtualization, Windows administration, and remote access security.
+This home lab simulation focuses on setting up an Azure Virtual Machine (VM) with secure Remote Desktop Protocol (RDP) access, leveraging Azure Sentinel to monitor and investigate RDP login attempts, and implementing basic security measures to protect against unauthorized access. You will deploy a Windows-based VM in Azure, configure Network Security Group (NSG) rules to allow only trusted IP addresses, and integrate the VM with Azure Sentinel to track authentication events. Additionally, you will create alert rules to detect failed login attempts, investigate security logs, and apply best practices for securing remote access. By the end of this lab, you will have hands-on experience in remote access management, security monitoring, and incident response, which are essential skills for IT support and cybersecurity roles.
 
 ## Skills Learned
 
-- Virtualization & System Administration – Set up and configured a Windows VM in VirtualBox.
-- Networking & Remote Access – Established an RDP session, identified IP addresses, and understood RDP over TCP/IP.
-- Windows Security & Firewall Management – Configured firewall rules, enabled Network Level Authentication (NLA), and managed settings via PowerShell.
-- Troubleshooting & Problem-Solving – Diagnosed RDP connection issues, tested network connectivity, and analyzed Windows Event Viewer logs.
-- RDP Security Hardening – Secured RDP by changing ports, restricting user access, and exploring MFA options.
+- Configuring and securing Remote Desktop Protocol (RDP) access in Azure
+- Deploying and managing a Windows Virtual Machine (VM) on Azure
+- Using Network Security Groups (NSG) rules to restrict unauthorized access
+- Integrating Azure Sentinel for real-time security monitoring and log analysis
+- Investigating RDP login attempts using Windows Event Viewer & Log Analytics
+- Creating alert rules to detect multiple failed RDP login attempts (Event ID 4625)
+- Implementing best practices for securing remote access, such as Azure Bastion, Multi-Factor Authentication (MFA), and 
+  Just-In-Time (JIT) VM access
+- Strengthening incident response skills by analyzing security logs and mitigating potential threats
 
-## Tools
+## Tools/Programs Used
 
--  VirtualBox
-- Kali Linux
+- Azure Sentinel
 
-### Step 1: Create a Kali Linux on Virtual Box
+### Step 1: Create a Virtual Machine on Azure
+
+Login to Azure portal and navigate to Virtual Machines then click create. Select Windows Server 2022 or Windows 10/11. Set up an admin username and password and under networking, ensure that RDP (Port 3389) is enabled the click review + create and waite for the deployment to complete
+
+![image](https://github.com/user-attachments/assets/1aeff27d-269c-466d-9251-c0ba831f0ed2)
 
 
-### Step 2: Set up RDP on Kali Linux
-
-*Ref 1: Install xrdp and xfce4 (if not installed)*
-
-Use statement:
-
-sudo apt update && sudo apt upgrade -y
-
-sudo apt install -y xrdp xfce4 xfce4-goodies
-
-(xrdp: The RDP server for Linux, xfce4: A lightweight desktop environment for smooth remote sessions)
-
-![image](https://github.com/user-attachments/assets/0701b5d2-10fd-4345-a9c6-04129af11143)
-
-*Ref 2: Enable and Start the xrdp Service*
-
-Use statement:
-
-sudo systemctl enable xrdp
-
-sudo systemctl start xrdp
-
-sudo systemctl status xrdp
-
-Ensure it's running without errors. If you see active (running), it's good to go.
-
-![image](https://github.com/user-attachments/assets/97317892-702b-4d0c-b27f-d736f1cf537a)
-
-*Ref 3: Add xrdp User to the ssl-cert Group*
-
-Use statement:
-
-sudo adduser xrdp ssl-cert
-
-sudo systemctl restart xrdp
-
-This ensures xrdp has the correct permissions.
-
-![image](https://github.com/user-attachments/assets/48947049-a0fa-493e-866f-55c11f5a7bf9)
-
-*Ref 4: Set XFCE as the Default Desktop for RDP Sessions*
-
-Use statement:
-
-echo "xfce4-session" > ~/.xsession
-
-Then reset the xrdp service
-
-sudo systemctl restart xrdp
-
-![image](https://github.com/user-attachments/assets/cb9b30a9-287d-4b51-9778-4cf0651da2a0)
-
-*Ref 5: Find Your Kali Linux IP Address*
-
-Use statement: ip a
-
-You'll want to look for the IP under eth0 or wlan0 (e.g., 192.168.1.100). 
-
-![image](https://github.com/user-attachments/assets/d0c8dd58-219f-4e28-97de-b7d92c4ce71a)
 
