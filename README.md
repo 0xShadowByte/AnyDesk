@@ -57,6 +57,9 @@ Open Remote Desktop Connection (mstsc.exe) and enter the VM's Public IP Address.
 
 Enable Azure Sentinel by going to Microsoft Sentinel and create a Sentinel workspace. Connect Log Analytics to the VM by attaching the VM to a log analytics workspace and enable windows security event logs collection. Create an alert rule for RDP access attempts by going to analytics > create rule, set condition: EventID 4625 (Failed RDP login) and configure an email alert for multiple failed login attempts.
 
+![image](https://github.com/user-attachments/assets/efd2173c-1515-4612-b1fe-f88ef1d92e08)
+
+
 ### Step 5: Simulate an RDP Security Incident
 
 Attempt muple failed logins (use wrong credentials). Check Windows Event Viewer for failed login attempts. Open Azure Sentinel to review logs in Log Analytics. Identify the failed login events and generate an incident report.
