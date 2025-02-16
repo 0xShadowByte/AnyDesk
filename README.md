@@ -13,56 +13,69 @@ The objective of this project was to set up a Windows virtual machine (VM) in VM
 - RDP Security Hardening – Secured RDP by changing ports, restricting user access, and exploring MFA options.
 
 ## Tools
-- VMware Workstation Pro 17
-- Windows 10 Enterprise
+- VirtualBox
+- Kali Linux
 
-### Step 1: Create a Windows Virtual Machine in VMware
+### Step 1: Create a Kali Linux on Virtual Box
 
-*Ref 1: Installing VMware Workstation Pro*
 
-![image](https://github.com/user-attachments/assets/8d50b58d-bd21-45a1-9cdf-dc19591fa629)
+### Step 2: Set up RDP on Kali Linux
 
-*Ref 2: Installing Windows Server 2022 on VM*
+*Ref 1: Install xrdp and xfce4 (if not installed)*
 
-![image](https://github.com/user-attachments/assets/7988407d-4020-4a82-bf5d-3a92a8e6560f)
+Use statement:
 
-*Ref 3: Running Windows Server 2022 on VM*
+sudo apt update && sudo apt upgrade -y
 
-![image](https://github.com/user-attachments/assets/56abd418-f4c4-4b79-b3be-5a8752899f02)
+sudo apt install -y xrdp xfce4 xfce4-goodies
 
-### Step 2: Enable Remote Desktop (RDP) in Windows
-Log into the Windows VM.
-Open Run (Win + R), type sysdm.cpl, and press Enter.
-Go to "Remote" tab and select "Allow remote connections to this computer".
-Check "Allow connections only from computers running Remote Desktop with Network Level Authentication" (for security).
-Click "Select Users" → Add your Windows user account.
-Click Apply > OK.
+(xrdp: The RDP server for Linux, xfce4: A lightweight desktop environment for smooth remote sessions)
 
-### Step 3: Configure Firewall to Allow RDP
-Open Windows Defender Firewall (Win + R, type firewall.cpl, press Enter).
-Click "Allow an app or feature through Windows Defender Firewall".
-Scroll down, find "Remote Desktop", and check both Private & Public boxes.
-Click OK.
-OR, enable RDP via PowerShell:
-powershell
-Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
+![image](https://github.com/user-attachments/assets/0701b5d2-10fd-4345-a9c6-04129af11143)
 
-### Step 4: Find Your VM's IP Address
-Open Command Prompt (Win + R, type cmd, press Enter).
-Type:
-ipconfig
-Look for IPv4 Address (e.g., 192.168.1.100).
+*Ref 2: Enable and Start the xrdp Service*
 
-### Step 5: Connect to the Windows VM via RDP
-On your host machine, open Remote Desktop Connection (Win + R, type mstsc, press Enter).
-Enter the VM’s IP address (192.168.1.100).
-Click Connect and enter your Windows VM username & password.
-Click OK, and you should be connected! 🎉
+Use statement:
 
-### 🔐 Bonus: Secure Your RDP Setup
-✅ Change RDP Port (Default 3389 → Custom Port):
+sudo systemctl enable xrdp
 
-powershell
-Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -Name PortNumber -Value 3390
-✅ Disable RDP for non-admin users using Group Policy (gpedit.msc).
-✅ Enable Multi-Factor Authentication (MFA) for RDP (if using Azure AD).
+sudo systemctl start xrdp
+
+sudo systemctl status xrdp
+
+Ensure it's running without errors. If you see active (running), it's good to go.
+
+![image](https://github.com/user-attachments/assets/97317892-702b-4d0c-b27f-d736f1cf537a)
+
+*Ref 3: Add xrdp User to the ssl-cert Group*
+
+Use statement:
+
+sudo adduser xrdp ssl-cert
+
+sudo systemctl restart xrdp
+
+This ensures xrdp has the correct permissions.
+
+![image](https://github.com/user-attachments/assets/48947049-a0fa-493e-866f-55c11f5a7bf9)
+
+*Ref 4: Set XFCE as the Default Desktop for RDP Sessions*
+
+Use statement:
+
+echo "xfce4-session" > ~/.xsession
+
+Then reset the xrdp service
+
+sudo systemctl restart xrdp
+
+![image](https://github.com/user-attachments/assets/cb9b30a9-287d-4b51-9778-4cf0651da2a0)
+
+*Ref 5: Find Your Kali Linux IP Address*
+
+Use statement: ip a
+
+You'll want to look for the IP under eth0 or wlan0 (e.g., 192.168.1.100). 
+
+![image](https://github.com/user-attachments/assets/d0c8dd58-219f-4e28-97de-b7d92c4ce71a)
+
