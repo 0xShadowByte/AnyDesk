@@ -45,9 +45,13 @@ To clarify on the first portion of the excerise, restrict Inbound RDP access to 
 
 ### Step 3: Connect to the VM via RDP
 
-Open Remote Desktop Connection (mstsc.exe) and enter the VM's Public IP Address. Log in using the Admin credentials set eariler. Once connected, open Event Viewer and navigate to Windows Logs > Security > Event ID 4624 (Successful Logins). Event ID 4625 (Failed Logins).
+Open Remote Desktop Connection (mstsc.exe) and enter the VM's Public IP Address. Log in using the Admin credentials set eariler. Once connected, open Event Viewer and navigate to Windows Logs > Security > Event ID 4624 (Successful Logins). Event ID 4625 (Failed Logins). Use Bastion RDP to login if the first method fails.
+
+*Ref 5-6: Connect to VM via RDP*
 
 ![image](https://github.com/user-attachments/assets/b4e129f4-b5f6-45c5-b785-3a19aa722931)
+
+![image](https://github.com/user-attachments/assets/fa5a6ced-11e9-430c-86dd-62941b798851)
 
 ### Step 4: Intergrate the VM with Azure Sentinel for RDP Monitoring
 
