@@ -19,6 +19,7 @@ This home lab simulation focuses on setting up an Azure Virtual Machine (VM) wit
 ## Tools/Programs Used
 
 - Azure Sentinel
+- Azure Bastion
 
 ### Step 1: Create a Virtual Machine on Azure
 
@@ -34,11 +35,15 @@ Login to Azure portal and navigate to Virtual Machines then click create. Select
 
 Navigate to the VM's Networking settings and modify the NSG (Network Security Group) rules to 1.) restrict Inbound RDP (TCP 3389) access to your public IP only and 2.) Disable RDP access from 'Any' IPs for security. 
 
-To clarify on the first portion of the excerise, restrict Inbound RDP access to your public IP only. To edit the RDP rule to allow only your public IP you first first click on the exisitng RDP rule (Port 3389, Allow) to modify it. Under source change: (source - IP Addresses, Source IP Addresses/CIDR: enter your public IP address, Destination: Any, Service: RDP (3389), Action: Allow, Priority: Keep the existing priority or lower number for higher priority, Name: Update the name if necessary, e.i. Allow-RDP-MyIP) then click save to apply changes.
+To clarify on the first portion of the excerise, restrict Inbound RDP access to your public IP only. To edit the RDP rule to allow only your public IP you first first click on the exisitng RDP rule (Port 3389, Allow) to modify it. Under source change: (source - IP Addresses, Source IP Addresses/CIDR: enter your public IP address, Destination: Any, Service: RDP (3389), Action: Allow, Priority: Keep the existing priority or lower number for higher priority, Name: Update the name if necessary, e.i. Allow-RDP-MyIP) then click save to apply changes. Enable Azure Bastion for a more secure alternative to direct RDP.
 
 *Ref 3-4: securing RDP access*
 
 ![image](https://github.com/user-attachments/assets/48154030-d742-4804-933c-20d884e692b1)
 
 ![image](https://github.com/user-attachments/assets/26abf40e-8f59-419c-99ad-7e7596773302)
+
+### Step 3: Connect to the VM via RDP
+
+Open Remote Desktop Connection (mstsc.exe) and enter the VM's Public IP Address. Log in using the Admin credentials set eariler. Once connected, open Event Viewer and navigate to Windows Logs > Security > Event ID 4624 (Successful Logins). Event ID 4625 (Failed Logins).
 
