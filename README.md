@@ -1,4 +1,4 @@
-# Setting up a Windows VM in VMware and enable RDP
+# Setting RDP on Kali Linux
 
 ## Objective
 
@@ -6,14 +6,15 @@ The objective of this project was to set up a Windows virtual machine (VM) in VM
 
 ## Skills Learned
 
-- Virtualization & System Administration – Set up and configured a Windows VM in VMware.
+- Virtualization & System Administration – Set up and configured a Windows VM in VirtualBox.
 - Networking & Remote Access – Established an RDP session, identified IP addresses, and understood RDP over TCP/IP.
 - Windows Security & Firewall Management – Configured firewall rules, enabled Network Level Authentication (NLA), and managed settings via PowerShell.
 - Troubleshooting & Problem-Solving – Diagnosed RDP connection issues, tested network connectivity, and analyzed Windows Event Viewer logs.
 - RDP Security Hardening – Secured RDP by changing ports, restricting user access, and exploring MFA options.
 
 ## Tools
-- VirtualBox
+
+-  VirtualBox
 - Kali Linux
 
 ### Step 1: Create a Kali Linux on Virtual Box
