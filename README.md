@@ -76,6 +76,14 @@ Now we set up alerts in Microsoft Sentinel for failed RDP login attempts. Go to 
 
 Attempt muple failed logins (use wrong credentials). Check Windows Event Viewer for failed login attempts. Open Azure Sentinel to review logs in Log Analytics. Identify the failed login events and generate an incident report.
 
+After attempting multiple failed logins, I went to the Windows Event Viewer to look for failed login attempts. To get to the Windows Event Viewer on the VM OS type in eventvwr.msc in the search bar and press enter. Navigating to the Event viewer and expand Windows log to and select Security tag for security related logs which includes login attempts passed and failed. Filter out the Event Viewer for Event ID 4625 which is failed login attempts. 
+
+![image](https://github.com/user-attachments/assets/bcd5ef67-c27c-4170-b1f2-8141b03fcf5f)
+
+![image](https://github.com/user-attachments/assets/e54b5494-7f31-41fb-ba03-272a26bd283b)
+
+![image](https://github.com/user-attachments/assets/030196d6-b17c-4925-a3a5-8261dd13ae7e)
+
 ### Step 6: Document Findings and Remediation Steps
 Summarize who attempted access, from where, and when. Identify if it was a brute force attempt or a misconfigured account.
 Suggest mitigation strategies (e.g., enable MFA, restrict RDP to VPN users only)
