@@ -85,9 +85,12 @@ After attempting multiple failed logins, I went to the Windows Event Viewer to l
 ![image](https://github.com/user-attachments/assets/030196d6-b17c-4925-a3a5-8261dd13ae7e)
 
 ### Step 6: Document Findings and Remediation Steps
-Summarize who attempted access, from where, and when. Identify if it was a brute force attempt or a misconfigured account.
-Suggest mitigation strategies (e.g., enable MFA, restrict RDP to VPN users only)
 
+Summarize who attempted access, from where, and when. Identify if it was a brute force attempt or a misconfigured account.
+
+Provided a sample of the failed log on attempts. Seems like a brute force attempt because of the multiple log on attempts within a few minutes. Suggest using MFA or restricitng RDP to VPN users only.
+
+![image](https://github.com/user-attachments/assets/16c91646-c6af-4403-a94e-59be1e461c08)
 
 
 
